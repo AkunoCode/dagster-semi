@@ -1,0 +1,56 @@
+# workspace.yaml.template
+# Dagster workspace configuration template
+# Copy this file to workspace.yaml and customize for your environment
+
+load_from:
+  - python_file:
+      # Path to your pipeline file relative to the workspace root
+      relative_path: semis_pipeline/pipeline.py
+      # Working directory for imports (where scrapers and processing modules are located)
+      working_directory: semis_pipeline
+      # Optional: Specific location name (useful for multi-pipeline projects)
+      location_name: basketball_pipeline_location
+      
+# Alternative configurations (commented out):
+
+# For package-based loading:
+# load_from:
+#   - python_package:
+#       package_name: semis_pipeline
+#       attribute: defs
+
+# For module-based loading:
+# load_from:
+#   - python_module:
+#       module_name: semis_pipeline.pipeline
+#       attribute: defs
+#       working_directory: .
+
+# For multiple code locations:
+# load_from:
+#   - python_file:
+#       relative_path: semis_pipeline/pipeline.py
+#       working_directory: semis_pipeline
+#       location_name: basketball_pipeline
+#   - python_file:
+#       relative_path: other_pipeline/pipeline.py
+#       working_directory: other_pipeline
+#       location_name: other_pipeline
+
+# Environment-specific configurations
+# (Uncomment and modify as needed)
+
+# For development environment:
+# development:
+#   load_from:
+#     - python_file:
+#         relative_path: semis_pipeline/pipeline.py
+#         working_directory: semis_pipeline
+
+# For production environment:
+# production:
+#   load_from:
+#     - grpc_server:
+#         host: localhost
+#         port: 4000
+#         location_name: basketball_pipeline_prod
